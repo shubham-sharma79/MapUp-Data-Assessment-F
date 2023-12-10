@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 def generate_car_matrix(df)->pd.DataFrame:
     """
     Creates a DataFrame  for id combinations.
@@ -13,10 +12,17 @@ def generate_car_matrix(df)->pd.DataFrame:
                           where 'id_1' and 'id_2' are used as indices and columns respectively.
     """
     # Write your logic here
+    df = pd.read_csv("./datasets/dataset-1.csv")
+    
+      # Create a pivot table with id_1 as index, id_2 as columns, and car as values
+    car_matrix = df.pivot(index='id_1', columns='id_2', values='car')
+
+    # Fill NaN values with 0
+    car_matrix = car_matrix.fillna(0)
 
     return df
 
-
+     
 def get_type_count(df)->dict:
     """
     Categorizes 'car' values into types and returns a dictionary of counts.
